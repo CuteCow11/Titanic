@@ -7,19 +7,19 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 tn=pd.read_csv('titanic_train.csv')
-#print(tn.head(10))
-#print(tn.isnull().head(10))
+print(tn.head(10))
+print(tn.isnull().head(10))
 
-#sns.heatmap(tn.isnull(),yticklabels=False,cbar=False,cmap='viridis')
+sns.heatmap(tn.isnull(),yticklabels=False,cbar=False,cmap='viridis')
 sns.set_style('whitegrid')
-#sns.countplot(x='Survived',data=tn,palette='rainbow')
-#sns.countplot(x='Survived',hue='sex',data=tn,palette='rainbow')
-#sns.countplot(x='Survived',hue='Pclass',data=tn,palette='rainbow')
-#sns.displot(tn['Age'].dropna(),kde=False,color='darkred',bins=40)
-#sns.countplot(x='SibSp',data=tn)
-#tn['Fare'].hist(color='green',bins=40,figsize=(8,4))
-#pt.figure(figsize=(12,7))
-#sns.boxplot(x='Pclass',y='Age',data=tn,palette='winter')
+sns.countplot(x='Survived',data=tn,palette='rainbow')
+sns.countplot(x='Survived',hue='Sex',data=tn,palette='rainbow')
+sns.countplot(x='Survived',hue='Pclass',data=tn,palette='rainbow')
+sns.displot(tn['Age'].dropna(),kde=False,color='darkred',bins=40)
+sns.countplot(x='SibSp',data=tn)
+tn['Fare'].hist(color='green',bins=40,figsize=(8,4))
+pt.figure(figsize=(12,7))
+sns.boxplot(x='Pclass',y='Age',data=tn,palette='winter')
 
 def impute_age(cols):
     Age=cols[0]
@@ -38,7 +38,7 @@ def impute_age(cols):
 tn.drop('Cabin',axis=1,inplace=True)
 print(tn.head(5))
 tn['Age']=tn[['Age','Pclass']].apply(impute_age,axis=1)
-#sns.heatmap(tn.isnull(),yticklabels=False,cbar=False,cmap='viridis')
+sns.heatmap(tn.isnull(),yticklabels=False,cbar=False,cmap='viridis')
 print(pd.get_dummies(tn['Embarked'],drop_first=True).head())
 sex=pd.get_dummies(tn['Sex'],drop_first=True).astype(float)
 embark=pd.get_dummies(tn['Embarked'],drop_first=True).astype(float)
